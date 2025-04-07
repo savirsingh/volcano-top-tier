@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOLCANO: TOP TIER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <h1>VOLCANO</h1>
+            <span>TOP TIER</span><br><br>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="#products">Shop Volcano</a></li>
+            <li><a href="#footer">Queries</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Unleash Your Volcano</h2>
+            <p>The power to break boundaries, rise above challenges, and dominate your destiny.</p>
+            <a href="#products" class="cta-button">Discover Now</a>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter">
+        <div class="filter-buttons">
+            <button class="filter-btn" data-category="all">All Products</button>
+            <button class="filter-btn" data-category="hoodies">Hoodies</button>
+            <button class="filter-btn" data-category="pen">Pens</button>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="products" class="products">
+        <h2 class="section-title">The Collection</h2>
+        <div class="product-grid">
+            <div class="product-card" data-category="hoodies">
+                <img src="design1.png" alt="Luxury Item">
+                <h3>Lemon-Volcano Hoodie</h3>
+                <p>When life gives you lemons, hit them with a volcano.</p>
+                <span class="price">$110 + fees<sup>1</sup></span><br><br>
+                <a href="/checkout?product=1" class="cta-button">Explore</a>
+            </div>
+            <div class="product-card" data-category="hoodies">
+                <img src="design2.png" alt="Luxury Item">
+                <h3>Top Tier Hoodie</h3>
+                <p>Comfort and elegance had a baby.</p>
+                <span class="price">$100 + fees<sup>1</sup></span><br><br>
+                <a href="/checkout?product=2" class="cta-button">Explore</a>
+            </div>
+            <div class="product-card" data-category="pen">
+                <img src="design3.png" alt="Luxury Item">
+                <h3>Volcano Pen (15-pack)</h3>
+                <p><i>Guarantee</i> success in your writing.</p>
+                <span class="price">$10/pen + fees<sup>1</sup></span><br><br>
+                <a href="/checkout?product=3" class="cta-button">Explore</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">Our Philosophy</h2>
+        <p>At VOLCANO: TOP TIER, we believe that success is a force you unleash within yourself. Just like a volcano, when you reach your full potential, nothing can stand in your way. Our mission is to create luxury fashion pieces that inspire confidence, strength, and relentless ambition in every individual who wears them. With every product, you wear your victory. There's nothing like VOLCANO.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h1>VOLCANO</h1>
+                <span>TOP TIER</span><br><br>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#products">Shop</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#footer">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="notice">VOLCANO: TOP TIER is proud to announce that 5% of profits fund psoriasis research. Further, all orders automatically include a $20.00 required donation. You are also able to add an additional $15.00 donation to your order, and we'll take care of transaction fees.</p>
+        <p class="notice"><sup>1</sup>Applicable fees may include handling fee, delivery fees, psoriasis research donation, and country-specific fees. Prices do not include taxes, and are in USD. Listed price represents the amount that VOLCANO: TOP TIER receives for the product.</p>
+        <p>Direct any queries to kopichiki@gmail.com.</p>
+    </footer>
+
+<script>
+// script.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            filterProducts(category);
+        });
+    });
+
+    function filterProducts(category) {
+        productCards.forEach(card => {
+            const productCategory = card.getAttribute('data-category');
+            if (category === 'all' || productCategory === category) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>
+

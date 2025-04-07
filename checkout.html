@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | VOLCANO: TOP TIER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            font-weight: 700;
+        }
+        .total-row td {
+            font-weight: 700;
+        }
+        .btn {
+            display: block;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #444;
+        }
+        .dropdown {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+        .footnotes {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 2rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Summary</h1>
+
+        <label for="country">Select Delivery Country:</label>
+        <select id="country" class="dropdown">
+            <option value="Canada">Canada</option>
+            <option value="US">United States</option>
+            <option value="Australia">Australia</option>
+            <option value="UK">United Kingdom</option>
+            <option value="France">France</option>
+        </select>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>Product</th>
+                    <td id="product-name"></td>
+                </tr>
+                <tr>
+                    <th>Base Price</th>
+                    <td id="base-price"></td>
+                </tr>
+                <tr>
+                    <th>Required Donation<sup>1</sup></th>
+                    <td>$20.00</td>
+                </tr>
+                <tr>
+                    <th>Delivery Fee<sup>2</sup></th>
+                    <td id="delivery"></td>
+                </tr>
+                <tr class="total-row">
+                    <td>Total Before Taxes</td>
+                    <td id="total"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a id="checkout-btn" class="btn">Checkout via Email</a>
+
+        <div class="footnotes">
+            <p><sup>1</sup><strong>Note:</strong> A mandatory $20.00 donation is included in every order to support psoriasis research. VOLCANO: TOP TIER covers the transaction fees for this contribution.</p>
+            <p>After clicking checkout, an email will be prepared. In your reply to our confirmation email, please include your full shipping address, your state/province (for tax purposes), and any additional notes or instructions.</p>
+            <p><strong>Refund Policy:</strong> Due to the personalized and donation-based nature of our products, all sales are final. Refunds or exchanges are only issued in the case of defective merchandise or incorrect deliveries.</p>
+            <p><sup>2</sup><strong>Legal Disclaimer:</strong> All pricing is in USD. Shipping fees are based on dispatch from Ontario, Canada. Additional duties or taxes may apply upon delivery, depending on your local import laws. Prices displayed are estimates and may vary slightly based on local regulations or processing adjustments.</p>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('product'));
+
+        const products = {
+            1: { name: 'Lemon-Volcano Hoodie', price: 110 },
+            2: { name: 'Top Tier Hoodie', price: 100 },
+            3: { name: 'Volcano Pen (15-pack)', price: 150 },
+        };
+
+        const shippingRates = {
+            'Canada': 50,
+            'US': 70,
+            'Australia': 90,
+            'UK': 80,
+            'France': 85
+        };
+
+        const product = products[productId];
+
+        function updateSummary() {
+            const country = document.getElementById('country').value;
+            const shipping = shippingRates[country];
+            const donation = 20;
+            const total = (product.price + donation + shipping).toFixed(2);
+
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('base-price').textContent = `$${product.price.toFixed(2)}`;
+            document.getElementById('delivery').textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total}`;
+
+            const emailSubject = encodeURIComponent(`Order Request: ${product.name}`);
+            const emailBody = encodeURIComponent(`I would like to purchase the ${product.name}.\nShipping Country: ${country}\nTotal Estimated Cost: $${total}`);
+            document.getElementById('checkout-btn').href = `mailto:kopichiki@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+        }
+
+        if (product) {
+            updateSummary();
+            document.getElementById('country').addEventListener('change', updateSummary);
+        } else {
+            document.querySelector('.container').innerHTML = '<h1>Product Not Found</h1><p>Please return and select a valid item.</p>';
+        }
+    </script>
+</body>
+</html>
