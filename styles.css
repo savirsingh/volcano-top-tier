@@ -422,3 +422,13 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+.top-banner {
+    background-color: #ff4d00;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
