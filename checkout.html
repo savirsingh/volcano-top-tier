@@ -95,7 +95,7 @@
                 </tr>
                 <tr>
                     <th>Required Donation<sup>1</sup></th>
-                    <td>$20.00</td>
+                    <td>$10.00</td>
                 </tr>
                 <tr>
                     <th>Delivery Fee<sup>2</sup></th>
@@ -128,11 +128,11 @@
         };
 
         const shippingRates = {
-            'Canada': 50,
-            'US': 70,
-            'Australia': 90,
-            'UK': 80,
-            'France': 85
+            'Canada': 40,
+            'US': 60,
+            'Australia': 80,
+            'UK': 70,
+            'France': 75
         };
 
         const product = products[productId];
@@ -140,7 +140,7 @@
         function updateSummary() {
             const country = document.getElementById('country').value;
             const shipping = shippingRates[country];
-            const donation = 20;
+            const donation = 10;
             const total = (product.price + donation + shipping).toFixed(2);
 
             document.getElementById('product-name').textContent = product.name;
